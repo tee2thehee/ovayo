@@ -339,7 +339,7 @@
     }
 
     .team-photo {
-      height: 225px;
+      aspect-ratio: 1;
       background:
         radial-gradient(circle at 50% 35%, #eceff3 0 20%, transparent 21%),
         linear-gradient(145deg, #e8eaed, #ccd2d9);
@@ -361,8 +361,8 @@
     .team-photo--portrait img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center 35%;
+      object-fit: contain;
+      object-position: center;
     }
 
     .team-body {
@@ -1064,10 +1064,6 @@
         grid-template-columns: 1fr;
       }
 
-      .team-photo {
-        height: 210px;
-      }
-
       .team-direct {
         align-items: flex-start;
         flex-direction: column;
@@ -1213,12 +1209,12 @@
         <div class="team-proof">
           <article class="team-card">
             <div class="team-photo team-photo--portrait">
-              <img src="assets/team/cherry-h-founder.png" alt="Cherry H, founder of OVAYO" width="1254" height="1254" loading="lazy" decoding="async" />
+              <img src="assets/team/cherry-h-founder-enhanced.jpg" alt="Cherry H., founder and strategic director of OVAYO" width="1254" height="1254" loading="lazy" decoding="async" />
             </div>
             <div class="team-body">
-              <div class="team-name">Cherry H</div>
-              <div class="team-role">Founder · Strategy</div>
-              <p class="team-value">12 years of experience in advertising. Leads the strategy and creative direction behind your business’s marketing.</p>
+              <div class="team-name">Cherry H.</div>
+              <div class="team-role">Founder / Strategic Director</div>
+              <p class="team-value">With 12 years of advertising expertise and experience working with global clients, Cherry drives OVAYO’s mission to help U.S. small businesses win more customers, increase sales, and accelerate sustainable growth.</p>
               <div class="team-tags">
                 <span class="team-tag">Strategy</span>
                 <span class="team-tag">Advertising</span>
@@ -1227,14 +1223,16 @@
           </article>
 
           <article class="team-card">
-            <div class="team-photo">Replace with brand / creative photo</div>
+            <div class="team-photo team-photo--portrait">
+              <img src="assets/team/tien-nguyen-co-founder-enhanced.jpg" alt="Tien Nguyen, co-founder and head of technology at OVAYO" width="1254" height="1254" loading="lazy" decoding="async" />
+            </div>
             <div class="team-body">
-              <div class="team-name">Team Member</div>
-              <div class="team-role">Brand · Creative</div>
-              <p class="team-value">Shapes the brand system — logo, visual identity, guidelines and the way the business shows up.</p>
+              <div class="team-name">Tien Nguyen</div>
+              <div class="team-role">Co-Founder &amp; Head of Technology | Formerly at Sony</div>
+              <p class="team-value">With a background at Sony and a focus on web technologies, AI, and digital innovation, Tien leads the technical direction at Ovayo. He combines technology and creative problem-solving to build smarter, more seamless digital experiences.</p>
               <div class="team-tags">
-                <span class="team-tag">Branding</span>
-                <span class="team-tag">Identity</span>
+                <span class="team-tag">Technology</span>
+                <span class="team-tag">AI &amp; Web</span>
               </div>
             </div>
           </article>
