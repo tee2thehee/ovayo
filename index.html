@@ -306,31 +306,35 @@
 
     .team-intro {
       display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 60px;
-      align-items: start;
-      margin-bottom: 42px;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 64px;
+      align-items: end;
+      margin-bottom: 40px;
     }
 
     .team-statement {
-      font-size: clamp(24px, 3.3vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -.038em;
-      font-weight: 760;
-      max-width: 610px;
+      font-size: 18px;
+      line-height: 1.6;
+      letter-spacing: -.01em;
+      font-weight: 450;
+      max-width: 460px;
     }
 
-    .team-statement span {
-      color: var(--blue);
+    .team-intro .h2 {
+      font-size: clamp(38px, 4.2vw, 56px);
+      line-height: 1.02;
     }
 
     .team-proof {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
     }
 
     .team-card {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      align-items: center;
       background: var(--white);
       border-radius: 20px;
       overflow: hidden;
@@ -340,6 +344,12 @@
 
     .team-photo {
       aspect-ratio: 1;
+      width: calc(100% - 20px);
+      max-width: 320px;
+      margin: 20px 0 20px 20px;
+      border-radius: 14px;
+      overflow: hidden;
+      justify-self: center;
       background:
         radial-gradient(circle at 50% 35%, #eceff3 0 20%, transparent 21%),
         linear-gradient(145deg, #e8eaed, #ccd2d9);
@@ -365,27 +375,17 @@
       object-position: center;
     }
 
-    .team-photo--jason {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .team-photo--jason img {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 270%;
-      height: auto;
-      max-width: none;
-      transform: translate(-50%, -37%);
+    .team-photo--tien img {
+      object-fit: cover;
+      object-position: center 75%;
     }
 
     .team-body {
-      padding: 20px;
+      padding: 32px 28px;
     }
 
     .team-name {
-      font-size: 19px;
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: -.02em;
     }
@@ -398,26 +398,8 @@
 
     .team-value {
       margin-top: 14px;
-      font-size: 13px;
+      font-size: 14px;
       color: #4d525a;
-    }
-
-    .team-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 16px;
-    }
-
-    .team-tag {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 7px 9px;
-      border-radius: 999px;
-      background: var(--soft);
-      color: #50565e;
     }
 
     .team-direct {
@@ -425,17 +407,10 @@
       border-top: 1px solid #dedbd3;
       padding-top: 22px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       gap: 24px;
       align-items: center;
       font-weight: 720;
-    }
-
-    .team-direct small {
-      display: block;
-      color: var(--muted);
-      font-weight: 500;
-      margin-top: 4px;
     }
 
     /* SERVICES */
@@ -1033,7 +1008,15 @@
       }
 
       .team-proof {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+      }
+
+      .team-intro {
+        gap: 24px;
+      }
+
+      .team-statement {
+        max-width: 600px;
       }
 
       .services-grid,
@@ -1082,6 +1065,19 @@
       .team-direct {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .team-card {
+        grid-template-columns: 1fr;
+      }
+
+      .team-photo {
+        width: calc(100% - 40px);
+        margin: 20px auto 0;
+      }
+
+      .team-body {
+        padding: 24px;
       }
 
       .service-card {
@@ -1212,82 +1208,41 @@
       <div class="container">
         <div class="team-intro">
           <div>
-            <div class="eyebrow">The people behind OVAYO</div>
-            <h2 class="h2">Four disciplines.<br>One close team.</h2>
+            <h2 class="h2">Behind Your Growth.</h2>
           </div>
 
           <p class="team-statement">
-            Strategy, brand, content and performance work together — <span>so every channel feels connected</span> and you always know who owns the work.
+            We work as your in-house team, turning strategy, content, and technology into practical business growth.
           </p>
         </div>
 
         <div class="team-proof">
           <article class="team-card">
             <div class="team-photo team-photo--portrait">
-              <img src="assets/team/cherry-h-original.png" alt="Cherry H., founder and social media manager of OVAYO" width="1254" height="1254" loading="lazy" decoding="async" />
+              <img src="assets/team/cherry-h-original.png" alt="Cherry H., founder and strategy lead of OVAYO" width="1254" height="1254" loading="lazy" decoding="async" />
             </div>
             <div class="team-body">
               <div class="team-name">Cherry H.</div>
-              <div class="team-role">Founder &amp; Social Media Manager</div>
-              <p class="team-value">With 12 years of advertising expertise and experience working with global clients, Cherry drives OVAYO’s mission to help U.S. small businesses win more customers, increase sales, and accelerate sustainable growth.</p>
-              <div class="team-tags">
-                <span class="team-tag">Social Media</span>
-                <span class="team-tag">Advertising</span>
-              </div>
+              <div class="team-role">Founder &amp; Strategy Lead</div>
+              <p class="team-value">Cherry brings 12 years of advertising expertise with global clients, creating clear brand strategies and focused campaigns that build trust, attract customers, and drive growth.</p>
             </div>
           </article>
 
           <article class="team-card">
-            <div class="team-photo team-photo--portrait">
-              <img src="assets/team/tien-nguyen-original.png" alt="Tien Nguyen, co-founder and head of technology at OVAYO" width="1254" height="1254" loading="lazy" decoding="async" />
+            <div class="team-photo team-photo--portrait team-photo--tien">
+              <img src="assets/team/tien-nguyen-portrait-original.JPG" alt="Tien Nguyen, co-founder and technology lead of OVAYO" width="1216" height="1621" loading="lazy" decoding="async" />
             </div>
             <div class="team-body">
               <div class="team-name">Tien Nguyen</div>
-              <div class="team-role">Co-Founder &amp; Head of Technology | Formerly at Sony</div>
-              <p class="team-value">Formerly at Sony, Tien leads OVAYO’s technology direction, combining web development, AI, and creative problem-solving to build seamless digital experiences that help small businesses work smarter and grow with confidence.</p>
-              <div class="team-tags">
-                <span class="team-tag">Technology</span>
-                <span class="team-tag">AI &amp; Web</span>
-              </div>
+              <div class="team-role">Co-Founder &amp; Technology Lead</div>
+              <p class="team-value">Tien brings 10 years of technology experience, combining web development, AI, and digital innovation to build seamless experiences, simplify operations, and support sustainable business growth.</p>
             </div>
           </article>
 
-          <article class="team-card">
-            <div class="team-photo team-photo--portrait team-photo--jason">
-              <img src="assets/team/jason-original.png" alt="Jason, creative director at OVAYO" width="1086" height="1448" loading="lazy" decoding="async" />
-            </div>
-            <div class="team-body">
-              <div class="team-name">Jason</div>
-              <div class="team-role">Creative Director</div>
-              <p class="team-value">Leads OVAYO’s creative vision, transforming bold ideas into powerful brand experiences that capture attention, build customer trust, differentiate businesses, and turn creative strategies into measurable business growth and results.</p>
-              <div class="team-tags">
-                <span class="team-tag">Creative</span>
-                <span class="team-tag">Branding</span>
-              </div>
-            </div>
-          </article>
 
-          <article class="team-card">
-            <div class="team-photo team-photo--portrait">
-              <img src="assets/team/camille-original.jpeg" alt="Camille, head of performance marketing at OVAYO" width="800" height="800" loading="lazy" decoding="async" />
-            </div>
-            <div class="team-body">
-              <div class="team-name">Camille</div>
-              <div class="team-role">Head of Performance Marketing</div>
-              <p class="team-value">Drives customer acquisition and revenue growth through data-driven advertising, high-converting campaigns, and continuous optimization, helping businesses generate qualified leads, maximize marketing ROI, and scale sales with confidence and consistency.</p>
-              <div class="team-tags">
-                <span class="team-tag">Advertising</span>
-                <span class="team-tag">Performance</span>
-              </div>
-            </div>
-          </article>
         </div>
 
         <div class="team-direct">
-          <div>
-            Real people. Clear ownership. Direct communication.
-            <small>If a specialist is a partner or contractor, we say so. We don't pretend to be a giant agency.</small>
-          </div>
           <a href="#checkup" class="btn btn-dark">Meet OVAYO through a free checkup →</a>
         </div>
       </div>
