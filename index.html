@@ -507,6 +507,14 @@
       align-items: stretch;
     }
 
+    .pricing-grid--social {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pricing-grid--projects {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .price-card {
       background: var(--white);
       border: 1px solid rgba(0,0,0,.06);
@@ -641,6 +649,18 @@
       margin-top: 24px;
       font-size: 12px;
       color: var(--muted);
+    }
+
+    .pricing-footnote .package-name {
+      color: var(--ink);
+    }
+
+    #additional-services .package-outcome {
+      min-height: 0;
+    }
+
+    #additional-services .package-link {
+      max-width: 260px;
     }
 
 
@@ -1332,104 +1352,113 @@
     </section>
 
     <!-- PRICING -->
-    <section class="section pricing" id="pricing">
+    <section class="section pricing" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="eyebrow">Simple plans. Real growth.</div>
-            <h2 class="h2">Start small.<br>Scale when it works.</h2>
+            <div class="eyebrow">Monthly services</div>
+            <h2 class="h2" id="pricing-heading">We Handle Your<br>Social Media</h2>
           </div>
-          <p class="lead">
-            Clear scope, clear price, and a natural path from “stay active” to measurable lead generation.
-          </p>
+          <p class="lead">Simple monthly plans from $79. Stay active online while you focus on your business.</p>
         </div>
-
-        <div class="pricing-grid">
+        <div class="pricing-grid pricing-grid--social">
           <article class="price-card">
-            <div class="package-name">Be Present</div>
-            <div style="margin-top:10px;font-size:12px;font-weight:800;color:var(--blue);">This is for you if: “People check us online and we look inactive.”</div>
-            <div class="package-outcome">For businesses that mainly need to stop looking inactive.</div>
-            <div class="price"><strong>$149</strong><small>/2weeks</small></div>
-            <div class="best-for">Best for: solo businesses, salons, small shops</div>
-            <ul class="package-list">
-              <li>8 social posts included 1 video, 1 carousel, 1 gif, 5 static photos</li>
-              <li>Facebook + Instagram scheduling for one month</li>
-              <li>Profile / bio cleanup</li>
-              <li>Management and Publishing</li>
-              <li>Strategic Planning Proposal</li>
-              <li>Report summary</li>
-            </ul>
-            <div class="package-note">Client provides original photos/video. One revision batch included.</div>
-            <a class="package-link" href="#checkup">Ask about Be Present <span>→</span></a>
-          </article>
 
-          <article class="price-card">
-            <div class="package-name">Get Found</div>
-            <div style="margin-top:10px;font-size:12px;font-weight:800;color:var(--blue);">This is for you if: “We have a good business, but our local presence is weak.”</div>
-            <div class="package-outcome">For businesses that want stronger local visibility and trust.</div>
-            <div class="price"><strong>$249</strong><small>/month</small></div>
-            <div class="best-for">Best for: cleaning, detailing, beauty, local services</div>
+            <div class="package-name">Stay Active</div>
+            <div class="package-outcome">Keep your business active and professional online.</div>
+            <div class="price"><strong>$79</strong><small>/month</small></div>
+            <div class="best-for">Included</div>
             <ul class="package-list">
-              <li>Google Business optimization</li>
-              <li>2 Google updates / month</li>
-              <li>4 social posts / month</li>
-              <li>Basic local SEO recommendations</li>
-              <li>Review-generation system</li>
-              <li>Website / CTA conversion check</li>
-              <li>Monthly visibility report</li>
+              <li>4 Social Media Posts Monthly</li>
+              <li>Facebook &amp; Instagram</li>
+              <li>Captions &amp; Scheduled Posting</li>
             </ul>
-            <div class="package-note">Focused on improving your local visibility foundation — never fake ranking guarantees.</div>
-            <a class="package-link" href="#checkup">Ask about Get Found <span>→</span></a>
-          </article>
 
+            <a class="package-link" href="#checkup">Get Started <span aria-hidden="true">→</span></a>
+          </article>
           <article class="price-card featured">
-            <span class="badge">Most popular</span>
-            <div class="package-name">Get More Leads</div>
-            <div style="margin-top:10px;font-size:12px;font-weight:800;color:var(--blue);">This is for you if: “We get attention, but not enough calls or bookings.”</div>
-            <div class="package-outcome">For businesses that want marketing tied more closely to inquiries.</div>
-            <div class="price"><strong>$399</strong><small>/month</small></div>
-            <div class="best-for">Best for: established local businesses ready to grow</div>
+            <span class="badge">RECOMMENDED</span>
+            <div class="package-name">Look Professional</div>
+            <div class="package-outcome">We create and manage your content so you don&#x27;t have to.</div>
+            <div class="price"><strong>$149</strong><small>/month</small></div>
+            <div class="best-for">Included</div>
             <ul class="package-list">
-              <li>6–8 social posts / month</li>
-              <li>Up to 2 simple Reels</li>
-              <li>Google Business management</li>
-              <li>4 Google updates / month</li>
-              <li>Review support</li>
-              <li>Monthly promotion / offer campaign</li>
-              <li>Website CTA / landing-page improvements</li>
-              <li>Basic lead / call tracking where available</li>
-              <li>Monthly growth report</li>
+              <li>8 Social Media Posts Monthly</li>
+              <li>1 Short Video Included</li>
+              <li>Facebook &amp; Instagram</li>
+              <li>Content Planning &amp; Posting</li>
             </ul>
-            <div class="package-note">Designed to turn attention into more opportunities to win customers.</div>
-            <a class="package-link" href="#checkup">Start with Get More Leads <span>→</span></a>
-          </article>
-
-          <article class="price-card">
-            <div class="package-name">Lead Engine</div>
-            <div style="margin-top:10px;font-size:12px;font-weight:800;color:var(--blue);">This is for you if: “We want to actively generate and track leads.”</div>
-            <div class="package-outcome">For higher-value businesses that want a measurable acquisition system.</div>
-            <div class="price"><strong>$699+</strong><small>/month</small></div>
-            <div class="best-for">Best for: HVAC, plumbing, auto repair, contractors, higher-value services</div>
-            <ul class="package-list">
-              <li>Everything in Get More Leads</li>
-              <li>Dedicated landing page / funnel</li>
-              <li>Local SEO content improvements</li>
-              <li>Google / Meta ad management</li>
-              <li>Conversion tracking setup</li>
-              <li>Monthly campaign optimization</li>
-              <li>Monthly strategy call</li>
-            </ul>
-            <div class="package-note">Advertising spend is separate. Paid campaigns and deeper SEO are only offered when the scope and specialist support are appropriate.</div>
-            <a class="package-link" href="#checkup">Talk about Lead Engine <span>→</span></a>
+            <p class="package-note">8 posts total, including 1 short video.</p>
+            <a class="package-link" href="#checkup">Get Started <span aria-hidden="true">→</span></a>
           </article>
         </div>
-
-        <p class="pricing-footnote">
-          Starter plans are designed to stay simple. Professional on-location filming, ad spend, advanced SEO, complex website builds and daily community management are quoted separately.
-        </p>
+        <p class="pricing-footnote">Client provides photos and footage. Posts are shared across Facebook and Instagram.</p>
       </div>
     </section>
 
+    <section class="section pricing" id="one-time-pricing" aria-labelledby="one-time-pricing-heading">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">One-time services</div>
+            <h2 class="h2" id="one-time-pricing-heading">Build Your<br>Business</h2>
+          </div>
+          <p class="lead">Get your business looking professional without monthly commitments.</p>
+        </div>
+        <div class="pricing-grid pricing-grid--projects">
+          <article class="price-card">
+
+            <div class="package-name">Branding Kit</div>
+            <div class="package-outcome">Give your business a professional look that customers remember.</div>
+            <div class="price"><strong>$349</strong><small>one-time</small></div>
+            <div class="best-for">Included</div>
+            <ul class="package-list">
+              <li>Professional Logo Design</li>
+              <li>Brand Colors &amp; Fonts</li>
+              <li>Business Card Design</li>
+              <li>Social Media Profile Graphics</li>
+            </ul>
+
+            <a class="package-link" href="#checkup">Get Started <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="price-card">
+
+            <div class="package-name">Website Design</div>
+            <div class="package-outcome">A professional website where customers can see your services and contact you.</div>
+            <div class="price"><strong>$399</strong><small>one-time</small></div>
+            <div class="best-for">Included</div>
+            <ul class="package-list">
+              <li>Professional 1-Page Website</li>
+              <li>Mobile-Friendly Design</li>
+              <li>Services, Photos &amp; Business Details</li>
+              <li>Call &amp; Booking Buttons</li>
+            </ul>
+
+            <a class="package-link" href="#checkup">Get Started <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="price-card featured">
+            <span class="badge">RECOMMENDED</span>
+            <div class="package-name">Business Launch Kit</div>
+            <div class="package-outcome">Get your business branding and website done together.</div>
+            <div class="price"><strong>$699</strong><small>one-time</small></div>
+            <div class="best-for">Included</div>
+            <ul class="package-list">
+              <li>Everything in Branding Kit</li>
+              <li>Everything in Website Design</li>
+              <li>Matching Design Across Your Business</li>
+              <li>Save $49 When You Bundle</li>
+            </ul>
+
+            <a class="package-link" href="#checkup">Get Started <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <div class="pricing-footnote" id="additional-services">
+          <h3 class="package-name">Need a Little Extra Help?</h3>
+          <p class="package-outcome">We also offer Google Maps, SEO, paid advertising, website maintenance, and additional videos when your business needs them.</p>
+          <a class="package-link" href="#services">Explore Additional Services <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
 
     <!-- MEASUREMENT -->
     <section class="section-tight" style="background:#fff;">
