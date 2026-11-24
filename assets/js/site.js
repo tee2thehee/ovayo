@@ -1,5 +1,5 @@
 (() => {
-  // Retain URLs from the earlier separate-page draft without duplicating content.
+  // Preserve links from the former separate pages on the single index page.
   if (document.body.dataset.redirect) {
     const target = new URL(document.body.dataset.redirect, window.location.href);
     target.search = window.location.search;
@@ -25,15 +25,13 @@
     });
   }
 
-  if (navigation && ['home', 'work'].includes(document.body.dataset.page)) {
+  if (navigation && document.body.dataset.page === 'home') {
     const updateCurrentSection = () => {
       const hash = window.location.hash;
-      const home = document.body.dataset.page === 'home';
       const section = ['#pricing', '#one-time-pricing', '#additional-services'].includes(hash)
-        ? '#pricing' : hash === '#checkup' ? '#checkup' : '#work';
-      const currentHref = home ? (hash === '#checkup' ? '#checkup' : 'index.html') : `work.html${section}`;
+        ? '#pricing' : hash === '#checkup' ? '#checkup' : hash === '#work' ? '#work' : '#top';
       navigation.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href') === currentHref) {
+        if (link.getAttribute('href') === section) {
           link.setAttribute('aria-current', hash ? 'location' : 'page');
         } else {
           link.removeAttribute('aria-current');
@@ -44,24 +42,4 @@
     window.addEventListener('hashchange', updateCurrentSection);
   }
 
-  // Preserve incoming links to sections that moved out of the original homepage.
-  if (document.body.dataset.page === 'home') {
-    const movedSections = {
-      '#pricing': 'work.html#pricing',
-      '#one-time-pricing': 'work.html#one-time-pricing',
-      '#additional-services': 'work.html#additional-services',
-      '#work': 'work.html#work'
-    };
-
-    const redirectMovedSection = () => {
-      const destination = movedSections[window.location.hash];
-      if (!destination) return;
-      const target = new URL(destination, window.location.href);
-      target.search = window.location.search;
-      window.location.replace(target.href);
-    };
-
-    redirectMovedSection();
-    window.addEventListener('hashchange', redirectMovedSection);
-  }
 })();
