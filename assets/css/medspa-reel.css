@@ -75,7 +75,7 @@
   overflow: hidden;
   background: var(--ink);
   color: var(--white);
-  padding: 96px 0 88px;
+  padding: 56px 0 52px;
   scroll-margin-top: 76px;
 }
 
@@ -348,7 +348,7 @@
    WORK PAGE
    ========================================================= */
 .work-hero {
-  padding: 96px 0 64px;
+  padding: 56px 0 32px;
 }
 
 .work-hero .display {
@@ -553,7 +553,7 @@
 }
 
 .library-foot {
-  margin-top: 72px;
+  margin-top: 56px;
 }
 
 /* Lightbox */
@@ -686,7 +686,7 @@
 
 @media (max-width: 680px) {
   .reel {
-    padding: 72px 0 64px;
+    padding: 56px 0 48px;
   }
 
   .carousel3d {
@@ -704,7 +704,7 @@
   }
 
   .work-hero {
-    padding: 64px 0 40px;
+    padding: 48px 0 28px;
   }
 
   .work-cta-band {
