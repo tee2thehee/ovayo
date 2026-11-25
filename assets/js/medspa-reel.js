@@ -47,8 +47,22 @@
     const stage = root.querySelector('.c3d-stage');
     const cards = Array.from(root.querySelectorAll('.c3d-card'));
     const count = root.querySelector('.c3d-count');
+    const realN = cards.length;
+    if (!realN) return;
+
+    // Small sets loop badly in 3D, so repeat them until there are at least 5 cards.
+    if (realN > 1 && realN < 5) {
+      const originals = cards.slice();
+      let k = 0;
+      while (cards.length < 5 || cards.length % realN) {
+        const clone = originals[k % realN].cloneNode(true);
+        clone.dataset.clone = '1';
+        stage.appendChild(clone);
+        cards.push(clone);
+        k++;
+      }
+    }
     const n = cards.length;
-    if (!n) return;
 
     let position = 0;      // current (animated) position, float
     let target = 0;        // where we are heading, integer
@@ -89,7 +103,7 @@
 
     const setActive = () => {
       const idx = ((Math.round(position) % n) + n) % n;
-      if (count) count.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0');
+      if (count) count.textContent = String((idx % realN) + 1).padStart(2, '0') + ' / ' + String(realN).padStart(2, '0');
       if (idx === activeIndex) return;
       activeIndex = idx;
       cards.forEach((card, i) => {
@@ -216,7 +230,7 @@
       card.addEventListener('click', e => {
         if (moved) { e.preventDefault(); return; }
         const d = wrap(i - Math.round(position));
-        if (d === 0) toggleSound(card);
+        if (d === 0) { if (!card.hasAttribute('data-noaudio')) toggleSound(card); }
         else goTo(Math.round(position) + d);
       });
     });
