@@ -4,7 +4,7 @@
    ========================================================= */
 
 /* ---------- Home: work card with background video ---------- */
-.work-card--video {
+.work-card.work-card--video {
   background: #0f1012;
   color: var(--white);
   isolation: isolate;
@@ -29,7 +29,7 @@
   transform: scale(1.1);
 }
 
-.work-card--video .work-overlay {
+.work-card.work-card--video .work-overlay {
   background: linear-gradient(180deg, transparent, rgba(10,11,13,.85));
 }
 

@@ -1,0 +1,14 @@
+/* Homepage industry covers intentionally left blank for owner-supplied images. */
+#work .work-card--blank {
+  background: #eef0f2;
+  color: var(--ink);
+}
+
+#work .work-card--blank .work-art::before,
+#work .work-card--blank .work-art::after {
+  display: none;
+}
+
+#work .work-card--blank .work-overlay {
+  background: transparent;
+}

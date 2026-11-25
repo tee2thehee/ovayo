@@ -1,5 +1,7 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const visibleVideos = new Set();
+  let lightboxOpen = false;
 
   const loadVideo = video => {
     if (video && !video.src && video.dataset.src) {
@@ -9,7 +11,7 @@
   };
 
   const safePlay = video => {
-    if (!video) return;
+    if (!video || lightboxOpen) return;
     loadVideo(video);
     const p = video.play();
     if (p && p.catch) p.catch(() => {});
@@ -18,7 +20,13 @@
   /* ---------- Background videos (home work card) ---------- */
   const bgObserver = new IntersectionObserver(entries => {
     entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) safePlay(target); else target.pause();
+      if (isIntersecting) {
+        visibleVideos.add(target);
+        safePlay(target);
+      } else {
+        visibleVideos.delete(target);
+        target.pause();
+      }
     });
   }, { threshold: 0.35 });
   document.querySelectorAll('video[data-autoplay]').forEach(v => bgObserver.observe(v));
@@ -90,8 +98,10 @@
         card.classList.toggle('is-active', isActive);
         card.setAttribute('aria-hidden', String(!isActive));
         if (isActive && inView) {
+          visibleVideos.add(video);
           safePlay(video);
         } else {
+          visibleVideos.delete(video);
           video.pause();
           if (!isActive) muteCard(card);
         }
@@ -136,6 +146,11 @@
       const turnOn = v.muted;
       cards.forEach(muteCard);
       if (turnOn) {
+        // Keep lightweight previews until the viewer asks for sound.
+        if (v.dataset.full && v.getAttribute('src') !== v.dataset.full) {
+          v.src = v.dataset.full;
+          v.load();
+        }
         v.muted = false;
         card.classList.add('is-unmuted');
         if (b) { b.textContent = '🔊'; b.setAttribute('aria-label', 'Turn sound off'); }
@@ -230,7 +245,13 @@
       inView = entry.isIntersecting;
       const v = cards[activeIndex]?.querySelector('video');
       if (!v) return;
-      if (inView) safePlay(v); else v.pause();
+      if (inView) {
+        visibleVideos.add(v);
+        safePlay(v);
+      } else {
+        visibleVideos.delete(v);
+        v.pause();
+      }
     }, { threshold: 0.4 }).observe(stage);
 
     window.addEventListener('resize', render);
@@ -238,11 +259,14 @@
     setActive();
   });
 
-  /* ---------- Work page: video library ---------- */
-  const library = document.querySelector('.library-grid');
-  if (library) {
+  /* ---------- Work page: independent video libraries ---------- */
+  const libraryTiles = [];
+  document.querySelectorAll('.library').forEach(section => {
+    const library = section.querySelector('.library-grid');
+    if (!library) return;
     const tiles = Array.from(library.querySelectorAll('.lib-tile'));
-    const chips = Array.from(document.querySelectorAll('.filter-chip'));
+    const chips = Array.from(section.querySelectorAll('.filter-chip'));
+    libraryTiles.push(...tiles);
 
     chips.forEach(chip => {
       chip.addEventListener('click', () => {
@@ -256,6 +280,9 @@
             tile.classList.remove('is-in');
             tile.style.setProperty('--delay', (i % 4) * 0.06 + 's');
             requestAnimationFrame(() => requestAnimationFrame(() => tile.classList.add('is-in')));
+          } else {
+            tile.classList.remove('is-previewing');
+            tile.querySelector('video').pause();
           }
         });
       });
@@ -265,7 +292,7 @@
     tiles.forEach(tile => {
       const v = tile.querySelector('video');
       tile.addEventListener('mouseenter', () => {
-        if (!window.matchMedia('(hover: hover)').matches) return;
+        if (tile.hidden || !window.matchMedia('(hover: hover)').matches) return;
         tile.classList.add('is-previewing');
         safePlay(v);
       });
@@ -274,21 +301,40 @@
         v.pause();
       });
     });
+  });
 
-    // Lightbox with sound + controls.
-    const box = document.getElementById('lightbox');
-    const boxVideo = box?.querySelector('video');
+  // One lightbox serves every library without sharing their filter state.
+  const box = document.getElementById('lightbox');
+  const boxVideo = box?.querySelector('video');
+  if (box && boxVideo && libraryTiles.length) {
+    let activeTile = null;
     const close = () => {
       boxVideo.pause();
       boxVideo.removeAttribute('src');
       boxVideo.load();
       box.close();
+      lightboxOpen = false;
+      visibleVideos.forEach(video => {
+        video.muted = true;
+        safePlay(video);
+      });
+      activeTile?.focus({ preventScroll: true });
     };
 
-    tiles.forEach(tile => {
+    libraryTiles.forEach(tile => {
       tile.addEventListener('click', () => {
-        if (!box) return;
-        tiles.forEach(t => t.querySelector('video').pause());
+        activeTile = tile;
+        lightboxOpen = true;
+        document.querySelectorAll('video').forEach(video => {
+          if (video === boxVideo) return;
+          video.pause();
+          video.muted = true;
+        });
+        document.querySelectorAll('.c3d-card').forEach(card => {
+          card.classList.remove('is-unmuted');
+          const sound = card.querySelector('.c3d-sound');
+          if (sound) { sound.textContent = '🔇'; sound.setAttribute('aria-label', 'Turn sound on'); }
+        });
         boxVideo.src = tile.dataset.full;
         boxVideo.poster = tile.querySelector('img').src;
         box.showModal();
@@ -298,10 +344,10 @@
       });
     });
 
-    box?.querySelector('.lightbox-close').addEventListener('click', close);
-    box?.addEventListener('click', e => {
+    box.querySelector('.lightbox-close')?.addEventListener('click', close);
+    box.addEventListener('click', e => {
       if (e.target === box || e.target.classList.contains('lightbox-inner')) close();
     });
-    box?.addEventListener('cancel', e => { e.preventDefault(); close(); });
+    box.addEventListener('cancel', e => { e.preventDefault(); close(); });
   }
 })();
